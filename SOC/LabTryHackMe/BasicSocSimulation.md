@@ -1,6 +1,6 @@
 # 🛡️ Primer Lab de SOC — Investigación y Análisis de Alertas
 
-## 📌 Introducción
+## Introducción
 
 Después de dedicar un tiempo a investigar cómo funciona un **SOC (Security Operations Center)** y cuáles son las principales funciones dentro de un equipo **Blue Team**, decidí comenzar mis primeros laboratorios prácticos en **TryHackMe**.
 
@@ -28,7 +28,7 @@ Esta es la retrospectiva de los cuatro casos investigados.
 
 ---
 
-# 1. 📧 Caso 1 — Posible Phishing / Onboarding
+# 1.  Caso 1 — Posible Phishing / Onboarding
 
 ### Datos de la alerta
 
@@ -46,7 +46,7 @@ Esta es la retrospectiva de los cuatro casos investigados.
 
 `j.garcia@thetrydaily.thm`
 
-### 🔎 Investigación
+###  Investigación
 
 La primera alerta estaba relacionada con un supuesto correo de **onboarding**.
 
@@ -63,20 +63,20 @@ Los elementos que tuve en cuenta fueron:
 
 La coincidencia entre el dominio del remitente y el dominio de la URL era un indicador importante para determinar que no se trataba, en principio, de una campaña de phishing.
 
-### 🧠 Clasificación
+###  Clasificación
 
 **False Positive (FP)**
 
 La alerta se clasificó como FP porque los elementos analizados eran coherentes entre sí y no se encontraron indicadores suficientes que justificaran considerar el correo como malicioso.
 
-### 📝 Reporte original
+###  Reporte original
 
 > **Time of Activity:** 1 minute
 > **List of Related Entities:** [j.garcia@thetrydaily.thm](mailto:j.garcia@thetrydaily.thm), [onboarding@hrconnex.thm](mailto:onboarding@hrconnex.thm)
 > **Reason for Classifying as False Positive:** The URL and the username of the sender match. It is related to an onboarding account and the sender is [onboarding@hrconnex.thm](mailto:onboarding@hrconnex.thm). When analyzing the URL, it appears to be clean.
 > **Reason for Escalating the Alert:** None.
 
-### 🔧 Qué podría mejorar
+###  Qué podría mejorar
 
 Aunque la clasificación fue correcta, el reporte podía ser bastante más completo.
 
@@ -91,7 +91,7 @@ Por ejemplo, habría sido conveniente documentar:
 * Si el enlace utilizaba HTTP o HTTPS.
 * Por qué exactamente la coincidencia entre remitente y URL reducía la sospecha.
 
-### 📚 Lección aprendida
+###  Lección aprendida
 
 Una coincidencia entre el dominio del remitente y el dominio del enlace es un indicador útil, pero **no debería ser suficiente por sí sola para declarar un correo legítimo**.
 
@@ -121,7 +121,7 @@ Final classification
 
 ---
 
-# 2. 🚨 Caso 2 — Microsoft Account / Credential Phishing
+# 2.  Caso 2 — Microsoft Account / Credential Phishing
 
 ### Datos de la alerta
 
@@ -151,7 +151,7 @@ Final classification
 
 `Inbound`
 
-### 📩 Contenido relevante
+###  Contenido relevante
 
 El correo notificaba al usuario sobre un supuesto inicio de sesión sospechoso desde:
 
@@ -163,7 +163,7 @@ Además, el mensaje incluía un enlace:
 
 `https://m1crosoftsupport.co/login`
 
-### 🔎 Indicadores sospechosos
+###  Indicadores sospechosos
 
 En este caso aparecieron varios indicadores claros de phishing.
 
@@ -244,7 +244,7 @@ La combinación de:
 
 proporciona suficiente evidencia para clasificar el correo como phishing.
 
-### 📚 Lección aprendida
+###  Lección aprendida
 
 Una de las principales mejoras respecto al primer análisis es entender que **un único indicador rara vez debería ser la base de la decisión**.
 
@@ -266,7 +266,7 @@ High confidence phishing
 
 ---
 
-# 3. 📦 Caso 3 — Amazon Package Phishing
+# 3.  Caso 3 — Amazon Package Phishing
 
 ### Datos de la alerta
 
@@ -296,7 +296,7 @@ High confidence phishing
 
 `Inbound`
 
-### 🔎 Investigación inicial
+###  Investigación inicial
 
 El mensaje notificaba al usuario de un supuesto problema con una entrega de Amazon.
 
@@ -306,7 +306,7 @@ El enlace utilizado era:
 
 `http://bit.ly/3sHkX3da12340`
 
-### 🚩 Indicadores sospechosos
+###  Indicadores sospechosos
 
 #### 1. Dominio del remitente
 
@@ -342,13 +342,13 @@ El usuario dispone de un tiempo limitado antes de que el paquete sea devuelto.
 
 Se utiliza una entrega de Amazon como contexto para conseguir que el usuario proporcione información.
 
-### 🔬 Análisis del enlace
+###  Análisis del enlace
 
 La investigación del enlace confirmó que el destino era malicioso.
 
 Por tanto, ya no se trataba únicamente de un correo sospechoso: existía evidencia adicional que permitía confirmar la actividad maliciosa.
 
-### 🧠 Clasificación
+###  Clasificación
 
 **True Positive (TP)**
 
@@ -361,7 +361,7 @@ La clasificación se basa en la combinación de:
 * URL maliciosa.
 * Intento de obtener información del usuario.
 
-### 📝 Reporte
+###  Reporte
 
 **Time of Activity:** 4 minutes
 
@@ -390,7 +390,7 @@ The email contains multiple indicators associated with phishing. The sender uses
 
 Potential credential theft or collection of sensitive information from the affected user.
 
-### ⚠️ Error cometido durante la investigación
+###  Error cometido durante la investigación
 
 Inicialmente decidí **no escalar** la alerta porque consideré que se trataba de un phishing sencillo.
 
@@ -404,7 +404,7 @@ Esto cambia significativamente la investigación.
 
 ---
 
-# 4. 🔥 Caso 4 — Firewall Alert
+# 4. Caso 4 — Firewall Alert
 
 ### Datos de la alerta
 
@@ -450,7 +450,7 @@ Esto cambia significativamente la investigación.
 
 `Blocked Websites`
 
-### 🔎 Correlación con el caso anterior
+###  Correlación con el caso anterior
 
 Este caso es especialmente interesante porque aparece inmediatamente después del correo de phishing del caso 3.
 
@@ -482,7 +482,7 @@ y el firewall la bloqueó mediante la regla:
 
 `Blocked Websites`
 
-### 🚨 Indicadores relevantes
+### Indicadores relevantes
 
 #### Source IP
 
@@ -541,7 +541,7 @@ sino:
 
 Esto proporciona mucho más contexto.
 
-### 🧠 Clasificación
+###  Clasificación
 
 **True Positive (TP)**
 
@@ -552,7 +552,7 @@ Existe actividad que merece investigación porque:
 3. El firewall detectó la conexión.
 4. La regla de seguridad bloqueó la comunicación.
 
-### 🛑 ¿Era necesario escalar?
+###  ¿Era necesario escalar?
 
 En este caso, **no necesariamente**.
 
@@ -807,7 +807,7 @@ Esto proporciona mucho más contexto que cualquiera de las alertas por separado.
 
 ---
 
-# 📈 Qué quiero mejorar en los siguientes labs
+#  Qué quiero mejorar en los siguientes labs
 
 Después de este primer laboratorio, mis principales objetivos para los siguientes casos son:
 
@@ -821,7 +821,7 @@ Después de este primer laboratorio, mis principales objetivos para los siguient
 * Identificar infraestructura relacionada.
 * Utilizar mejor los logs disponibles.
 
-### 📝 Reporting
+###  Reporting
 
 Quiero que mis reportes sean menos escuetos y respondan siempre a:
 
@@ -845,7 +845,7 @@ Does it require escalation?
 What should be done next?
 ```
 
-### 🚨 Escalation
+###  Escalation
 
 También quiero mejorar la diferenciación entre:
 
@@ -858,7 +858,7 @@ También quiero mejorar la diferenciación entre:
 
 ---
 
-# 🏁 Conclusión
+#  Conclusión
 
 Este primer laboratorio me ha servido para pasar de estudiar la teoría de un SOC a enfrentarme a casos donde tengo que **investigar, correlacionar evidencias y justificar una decisión**.
 
